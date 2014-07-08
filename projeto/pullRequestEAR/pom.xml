@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project 
+  xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>pullRequestEAR</artifactId>
+    <packaging>ear</packaging>
+
+    <parent>
+        <groupId>br.com.vortice.pullRequestEJB</groupId>
+        <artifactId>treinamento</artifactId>
+        <version>1.0</version>
+    </parent>
+	
+	<build>
+		<finalName>${project.artifactId}</finalName>
+	
+		<plugins>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<earSourceDirectory>EarContent</earSourceDirectory>
+					<manifestFile>${basedir}/src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+					<applicationXml>${basedir}/src/main/resources/META-INF/application.xml</applicationXml>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<modules>
+						<ejbModule>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>pullRequestEJB</artifactId>
+							<bundleFileName>pullRequestEJB.jar</bundleFileName>
+						</ejbModule>
+						<webModule>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>pullRequestWAR</artifactId>
+							<bundleFileName>pullRequest.war</bundleFileName>
+							<contextRoot>/pullRequest</contextRoot>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		
+			<!-- plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>7.5.Final</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin-->
+		</plugins>
+	</build>
+	
+    <dependencies>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>pullRequestEJB</artifactId>
+            <version>1.0</version>
+            <type>ejb</type>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>pullRequestWAR</artifactId>
+            <version>1.0</version>
+            <type>war</type>
+        </dependency>
+        
+        <dependency>
+    		<groupId>com.vortice.core</groupId>
+    		<artifactId>vortice-core</artifactId>
+    		<type>jar</type>
+    	</dependency>
+        
+    </dependencies>
+</project>

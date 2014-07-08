@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>pullRequestWAR</artifactId>
+  <packaging>war</packaging>
+
+	<parent>
+		<groupId>br.com.vortice.pullRequestEJB</groupId>
+		<artifactId>pullRequest</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<repositories>
+		<repository>  
+			<id>prime-repo</id>  
+			<name>PrimeFaces Maven Repository</name>  
+			<url>http://repository.primefaces.org</url>  
+			<layout>default</layout>  
+		</repository>  
+	</repositories>
+
+  <dependencies>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>pullRequestEJB</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>ejb-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>  
+		    <groupId>org.primefaces</groupId>  
+		    <artifactId>primefaces</artifactId>  
+		    <version>4.0</version>  
+		</dependency>
+	
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+			<version>3.0.1</version>
+		</dependency>
+		
+		<dependency>
+			 <groupId>javax.servlet.jsp</groupId>
+			 <artifactId>jsp-api</artifactId>
+			 <version>2.1</version>
+			 <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		   <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>2.2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.vortice.core</groupId>
+    		<artifactId>vortice-core</artifactId>
+    		<scope>provided</scope>
+    	</dependency>
+    	
+    	<dependency>
+    		<groupId>com.vortice.web</groupId>
+    		<artifactId>vortice-web</artifactId>
+    	</dependency>
+	
+		<!-- Import the Servlet API 
+		<dependency>
+			<groupId>org.jboss.spec.javax.servlet</groupId>
+			<artifactId>jboss-servlet-api_3.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+	</dependencies>
+	
+	<build>
+		<finalName>pullRequest</finalName>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<plugins>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	</build>
+</project>

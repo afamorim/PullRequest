@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		
+		<title>..::Treinamento::.. <ui:insert name="title"></ui:insert></title>
+		
+		<script src="${request.contextPath}/nucleo/js/vortice.js" type="text/javascript"></script>
+		<script src="${request.contextPath}/nucleo/js/util.js" type="text/javascript"></script>
+		
+		<link type="text/css" rel="stylesheet" href="#{request.contextPath}/nucleo/css/default.css" />
+	    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/nucleo/css/syntaxhighlighter.css" />
+	    
+	    <link rel="shortcut icon" href="#{request.contextPath}/nucleo/images/favicon.ico"/>
+	      
+		<script type="text/javascript">
+			
+	
+			$(document).ready (function(){
+				janela = $(document).width();
+				menu = $('.itens-menu').width();
+				totalLargura = 122 + menu;
+				$(".posicionamento-menu").css ({
+					"position":"absolute",
+					"left":"50%",
+					"margin-left":-totalLargura/2
+				});
+			});
+		</script>
+	
+	</h:head>
+	
+	<h:body onload="startTime()">
+		<p:growl id="growl" showDetail="true" globalOnly="false" showSummary="false" escape="false" autoUpdate="true" life="5000" severity="info,warn,error"/>
+		<p:growl id="growlFalta" showDetail="true" globalOnly="false" showSummary="false" escape="false" autoUpdate="true" life="5000" severity="fatal"/>
+		<!--p:blockUI block="formMenu" trigger="formMenu">  
+	      		Carregando<br />  
+	       	<p:graphicImage value="/images/ajax-loader.gif"/>  
+	   	</p:blockUI-->
+	
+	
+		<div class="topo">
+			<div id="logo">
+				<h:graphicImage value="/nucleo/images/logo_vortice.png" width="150" height="52"/>
+			</div>
+			<div id="menu-topo">
+				<div style="float:left;"><h:outputText value="Bem-vindo(a) ao e-Laudos, #{loginFaces.nomeUsuarioBemVindo}, "/></div> <div id="horaCorrente" style="float:left;"></div>
+				<h:form id="formSubMenu" enctype="multipart/form-data">
+					
+				</h:form>
+			</div>
+		</div>
+	
+	
+		<div class="menu">
+			<div class="posicionamento-menu">
+				<span class="item-menu-esq"></span>
+				<span class="itens-menu">
+					<h:form id="formMenu" enctype="multipart/form-data">
+						<p:menubar>
+							<p:submenu label="Treinamento">
+								<p:menuitem value="Responsável" url="/responsavel/responsavel_consulta.xhtml"/>
+							</p:submenu>		
+						
+						 </p:menubar>
+					 </h:form>
+				 </span>
+				 <span class="item-menu-dir"></span>
+			 </div>
+		</div>
+		<div class="clear"></div>
+		<div class="conteudo">
+		
+	
+		 	<p:ajaxStatus  id="ajaxStatusPanel">
+						<f:facet name="start">
+				<p:outputPanel layout="block" styleClass="ico-loading"> 
+			    </p:outputPanel>
+						</f:facet>
+				
+						<f:facet name="complete">
+							<h:outputText value="" />
+						</f:facet>
+			</p:ajaxStatus>
+	
+		    
+	        <h:form id="formTemplate" enctype="multipart/form-data">
+	       	
+	       		<ui:insert name="conteudo"/>
+	              
+			</h:form>
+			
+			<ui:insert name="dialogs"/>
+		</div>
+	
+	
+		 <div style="border-top:4px solid #478E92;">
+		 	<p:outputPanel layout="block" style="border-top:0px solid #84C223; width:100%; margin-top:2px;">
+		 		<div style="font-size: 0.9em; text-align:center">Vortice - Empresa de treinamento e consultoria em desenvolvimento de soluções.<br/>2013 - All rights reserved &#174;</div>
+		 	</p:outputPanel>
+		 </div>
+	
+	</h:body>
+	
+
+</html>
