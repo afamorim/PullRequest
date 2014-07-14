@@ -1,4 +1,4 @@
-package br.com.vortice.treinamento.business;
+package br.com.vortice.pullRequest.business;
 
 import java.io.Serializable;
 

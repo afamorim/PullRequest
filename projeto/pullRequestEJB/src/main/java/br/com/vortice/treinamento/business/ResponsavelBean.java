@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
+import br.com.vortice.pullRequest.business.GenericBean;
 import br.com.vortice.treinamento.dao.ResponsavelDAO;
 import br.com.vortice.treinamento.entity.Responsavel;
 

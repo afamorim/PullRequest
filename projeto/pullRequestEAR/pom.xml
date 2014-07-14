@@ -10,8 +10,8 @@
     <packaging>ear</packaging>
 
     <parent>
-        <groupId>br.com.vortice.pullRequestEJB</groupId>
-        <artifactId>treinamento</artifactId>
+        <groupId>br.com.vortice.pullRequest</groupId>
+        <artifactId>pullRequest</artifactId>
         <version>1.0</version>
     </parent>
 	
