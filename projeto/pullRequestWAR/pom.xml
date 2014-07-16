@@ -110,7 +110,7 @@
 	</dependencies>
 	
 	<build>
-		<finalName>pullRequest</finalName>
+		<finalName>pullrequest</finalName>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<resources>
 			<resource>

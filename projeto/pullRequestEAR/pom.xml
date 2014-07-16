@@ -39,7 +39,7 @@
 							<groupId>${project.groupId}</groupId>
 							<artifactId>pullRequestWAR</artifactId>
 							<bundleFileName>pullRequest.war</bundleFileName>
-							<contextRoot>/pullRequest</contextRoot>
+							<contextRoot>/pullrequest</contextRoot>
 						</webModule>
 					</modules>
 				</configuration>
