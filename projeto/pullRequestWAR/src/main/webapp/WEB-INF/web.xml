@@ -34,6 +34,11 @@
 		<param-value>bootstrap</param-value>
 	</context-param>
 	
+	<context-param>
+		<param-name>MODO_DESENVOLVIMENTO</param-name>
+		<param-value>TRUE</param-value>
+	</context-param>
+	
     <!-- Faces Servlet -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>

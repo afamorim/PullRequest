@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<link type="text/css" rel="stylesheet" href="#{request.contextPath}/nucleo/css/default.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/nucleo/css/syntaxhighlighter.css" />
+		
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/nucleo/mentions.jquery/jquery.mentionsInput.css" />
+		
+		<link rel="shortcut icon" href="#{request.contextPath}/nucleo/images/favicon.ico"/>
+		
+		<!-- markItUp! skin -->
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/nucleo/textarea.jquery/markitup/skins/simple/style.css" />
+		<!--  markItUp! toolbar skin -->
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/nucleo/textarea.jquery/markitup/sets/html/style.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>..::PullRequest - Login::..</title>
+		
+		<style>
+		
+			body {
+			    /*background: url("${request.contextPath}/nucleo/images/bg_login.png") repeat scroll 0 0 transparent;*/
+			}
+			#login-box {
+			    background: url("${request.contextPath}/nucleo/images/bg_fieldset.png") repeat scroll 0 0 transparent;
+			    border-radius: 5px 5px 5px 5px;
+			    left: 50%;
+			    margin-left: -150px;
+			    padding: 26px;
+			    position: absolute;
+			    top: 250px;
+			    width: 250px;
+			    
+				-webkit-box-shadow:  2px 2px 2px 3px rgba(50, 50, 50, 0.3);
+		        box-shadow:  2px 2px 2px 3px rgba(50, 50, 50, 0.3);	    
+			}
+			#login-box-logo {
+				margin-left:29px;
+			}
+			
+			#login-box-botoes {
+				margin: 18px 0 21px 28px;
+		
+			}
+		
+		</style>
+	
+	</h:head>
+	
+	<h:body>
+		<p:growl id="growlLogin" showDetail="true" globalOnly="false"
+			showSummary="false" escape="false" autoUpdate="true" life="#{loginFaces.valueDefaultLifeGrowl}" />
+	
+		<p:outputPanel layout="block" id="login-box">
+			<p:outputPanel layout="block" id="login-box-interno">
+	
+				<p:outputPanel layout="block" id="login-box-logo">
+					<h:graphicImage value="/nucleo/images/logomarca.png" width="150"
+						height="52" />
+				</p:outputPanel>
+				<p:outputPanel layout="block" id="login-box-form">
+					<h:form id="loginFormId" prependId="false">
+						<p:focus for="userName" />
+						
+						<p:ajaxStatus  id="ajaxStatusPanel">
+									<f:facet name="start">
+							<p:outputPanel layout="block" styleClass="ico-carregando">
+										<p:graphicImage value="/nucleo/images/carregando.gif"/> 
+						    </p:outputPanel>
+									</f:facet>
+							
+									<f:facet name="complete">
+										<h:outputText value="" />
+									</f:facet>
+						</p:ajaxStatus>
+						
+						<p:outputPanel layout="block" styleClass="area-input-100" id="login-box-form-login">
+							<h:outputLabel styleClass="label-campo" value="Usuário:" name="outTxtUserNameNm"/>
+							<h:inputText id="userName" value="#{loginFaces.usuario.login}" maxlength="45" styleClass="input-form"/>
+						</p:outputPanel>
+											
+						<p:outputPanel layout="block" styleClass="area-input-100" id="login-box-form-senha">
+							<h:outputLabel styleClass="label-campo" value="Senha:" name="outTxtPasswordNm"/>
+							<h:inputSecret id="password" value="#{loginFaces.usuario.senha}" maxlength="45" styleClass="input-form"/>
+						</p:outputPanel>
+						
+						<p:outputPanel layout="block" styleClass="area-input-100" id="login-box-form-contexto" rendered="#{parametroELaudoFaces.isContextoELaudoAtivado() and parametroELaudoFaces.isContextoELaudoNoLogin()}">
+							<h:outputLabel styleClass="label-campo" value="Contexto de Conexão:" name="outTxtPasswordNm"/>
+							<p:selectOneMenu value="#{loginFaces.contextoConexao}">
+								<f:selectItem itemLabel="SELECIONE"/>
+								<f:selectItem itemLabel="LOCAL" itemValue="LOCAL"/>
+								<f:selectItem itemLabel="EXTERNO" itemValue="NUVEM"/>
+							</p:selectOneMenu>
+						</p:outputPanel>
+						
+						<p:outputPanel layout="block" styleClass="clear"/>
+	
+						<p:outputPanel layout="block" id="login-box-botoes" styleClass="">
+							<p:commandButton id="btnLoginId" value="Login" action="#{loginFaces.login}"></p:commandButton>
+							<p:commandButton id="btnCancelId" value="Limpar Dados" action="#{loginFaces.limpar()}" immediate="true" update="loginFormId"></p:commandButton>
+						</p:outputPanel>
+						
+						<p:commandLink action="#{loginFaces.reiniciarSenha()}" value="Esqueceu a senha?" style="color:#458F90; text-decoration:underline;"/>
+	
+					</h:form>
+				</p:outputPanel>
+	
+			</p:outputPanel>
+	
+		</p:outputPanel>
+	
+	</h:body>
+</html>

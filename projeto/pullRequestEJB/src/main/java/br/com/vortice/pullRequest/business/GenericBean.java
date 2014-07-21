@@ -18,7 +18,7 @@ public class GenericBean<E extends Entidade, ID extends Serializable> extends Ge
 		getDAO().setEntityManager(entityManager);
 	}
 	
-	@PersistenceContext(unitName="treinamentoPU")
+	@PersistenceContext(unitName="pullRequestPU")
 	private EntityManager entityManager;
 
 	protected EntityManager getEntityManager() {
