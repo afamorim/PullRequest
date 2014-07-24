@@ -1,4 +1,4 @@
-package br.com.vortice.treinamento.web.faces.util;
+package br.com.vortice.pullrequest.web.faces.util;
 
 import java.util.Iterator;
 import java.util.Map;

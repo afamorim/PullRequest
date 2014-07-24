@@ -1,4 +1,4 @@
-package br.com.vortice.treinamento.web.faces;
+package br.com.vortice.pullrequest.web.faces;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.vortice.treinamento.business.ResponsavelBean;
-import br.com.vortice.treinamento.entity.Responsavel;
+import br.com.vortice.pullrequest.business.ResponsavelBean;
+import br.com.vortice.pullrequest.entity.Responsavel;
 
 @SuppressWarnings("serial")
 @ManagedBean

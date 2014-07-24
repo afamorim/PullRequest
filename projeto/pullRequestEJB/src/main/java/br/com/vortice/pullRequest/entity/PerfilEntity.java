@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="PERFIL")
-public class Perfil extends PullRequestEntidade {
+public class PerfilEntity extends PullRequestEntity {
 
 	private String	nome;
 	

@@ -16,7 +16,7 @@ import org.hibernate.validator.NotNull;
 
 @Entity
 @Table(name="ESTABELECIMENTO")
-public class Estabelecimento extends PullRequestEntidade{
+public class EstabelecimentoEntity extends PullRequestEntity{
 
 	private String	nome;
 	private Date	dataCadastro;
@@ -26,8 +26,8 @@ public class Estabelecimento extends PullRequestEntidade{
 	private String	email;
 	private String	endereco;
 	private String	localizacaoGoogleMaps;
-	private Usuario	responsavelEstabelecimento;
-	private Usuario	usuarioCadastro;
+	private UsuarioEntity	responsavelEstabelecimento;
+	private UsuarioEntity	usuarioCadastro;
 	
 	
 	@Override
@@ -108,19 +108,19 @@ public class Estabelecimento extends PullRequestEntidade{
 	
 	@OneToOne
 	@JoinColumn(name="responsavel_estabelecimento_codigo")
-	public Usuario getResponsavelEstabelecimento() {
+	public UsuarioEntity getResponsavelEstabelecimento() {
 		return responsavelEstabelecimento;
 	}
-	public void setResponsavelEstabelecimento(Usuario responsavelEstabelecimento) {
+	public void setResponsavelEstabelecimento(UsuarioEntity responsavelEstabelecimento) {
 		this.responsavelEstabelecimento = responsavelEstabelecimento;
 	}
 	
 	@ManyToOne
 	@JoinColumn(name="usuario_cadastro_codigo")
-	public Usuario getUsuarioCadastro() {
+	public UsuarioEntity getUsuarioCadastro() {
 		return usuarioCadastro;
 	}
-	public void setUsuarioCadastro(Usuario usuarioCadastro) {
+	public void setUsuarioCadastro(UsuarioEntity usuarioCadastro) {
 		this.usuarioCadastro = usuarioCadastro;
 	}
 }

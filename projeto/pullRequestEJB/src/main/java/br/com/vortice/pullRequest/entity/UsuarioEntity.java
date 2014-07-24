@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="USUARIO")
-public class Usuario extends PullRequestEntidade {
+public class UsuarioEntity extends PullRequestEntity {
 
 	private String	nome;
 	private String	login;

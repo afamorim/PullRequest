@@ -1,4 +1,4 @@
-package br.com.vortice.treinamento.web.faces;
+package br.com.vortice.pullrequest.web.faces;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;

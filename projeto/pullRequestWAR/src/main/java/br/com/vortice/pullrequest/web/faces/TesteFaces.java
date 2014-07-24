@@ -1,4 +1,4 @@
-package br.com.vortice.treinamento.web.faces;
+package br.com.vortice.pullrequest.web.faces;
 
 import java.io.Serializable;
 
