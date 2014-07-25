@@ -21,7 +21,7 @@ public class UsuarioEntity extends PullRequestEntity {
 	private Date	dataCadastro;
 	private Date	dataUltimoAcesso;
 	private Boolean	ativo;
-	private Perfil	perfil;
+	private PerfilEntity	perfil;
 	
 	@Id
 	@Override
@@ -86,10 +86,10 @@ public class UsuarioEntity extends PullRequestEntity {
 
 	@ManyToOne
 	@JoinColumn(name="perfil_codigo")
-	public Perfil getPerfil() {
+	public PerfilEntity getPerfil() {
 		return perfil;
 	}
-	public void setPerfil(Perfil perfil) {
+	public void setPerfil(PerfilEntity perfil) {
 		this.perfil = perfil;
 	}
 }

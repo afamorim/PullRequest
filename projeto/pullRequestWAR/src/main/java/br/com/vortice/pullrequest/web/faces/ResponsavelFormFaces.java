@@ -1,5 +1,5 @@
 package br.com.vortice.pullrequest.web.faces;
-
+/*
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -48,3 +48,4 @@ public class ResponsavelFormFaces extends ResponsavelFaces {
 	}
 
 }
+*/

@@ -1,5 +1,6 @@
 package br.com.vortice.pullrequest.web.faces;
 
+/*
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
@@ -55,4 +56,5 @@ public class ResponsavelFaces extends BasePageBean {
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-}
+	
+} */

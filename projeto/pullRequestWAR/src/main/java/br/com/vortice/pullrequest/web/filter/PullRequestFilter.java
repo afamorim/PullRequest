@@ -1,4 +1,4 @@
-package br.com.vortice.treinamento.web.filter;
+package br.com.vortice.pullrequest.web.filter;
 
 import java.io.IOException;
 
@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.vortice.pullRequest.business.UsuarioBean;
-import br.com.vortice.pullRequest.entity.Perfil;
-import br.com.vortice.pullRequest.entity.Usuario;
+import br.com.vortice.pullRequest.entity.PerfilEntity;
+import br.com.vortice.pullRequest.entity.UsuarioEntity;
 import br.com.vortice.pullRequest.util.PullRequestConstantes;
 
 @WebFilter(urlPatterns={"/*"})
@@ -40,7 +40,7 @@ public class PullRequestFilter implements Filter {
 		
 		HttpSession session = httpServletRequest.getSession();
 		
-		Usuario usuarioLogado = (Usuario)session.getAttribute(PullRequestConstantes.USUARIO_LOGADO);
+		UsuarioEntity usuarioLogado = (UsuarioEntity)session.getAttribute(PullRequestConstantes.USUARIO_LOGADO);
 		
 		if (usuarioLogado != null){
 			
@@ -49,10 +49,10 @@ public class PullRequestFilter implements Filter {
 			
 			if (request.getServletContext().getInitParameter(PullRequestConstantes.MODO_DESENVOLVIMENTO) != null 
 					&& request.getServletContext().getInitParameter(PullRequestConstantes.MODO_DESENVOLVIMENTO).equals("TRUE")){
-				usuarioLogado = new Usuario();
+				usuarioLogado = new UsuarioEntity();
 				usuarioLogado.setCodigo(1L);
 				usuarioLogado.setLogin("admin");
-				usuarioLogado.setPerfil(new Perfil());
+				usuarioLogado.setPerfil(new PerfilEntity());
 				usuarioLogado.getPerfil().setCodigo(1L);
 				usuarioLogado.getPerfil().setNome("Administrador");
 				session.setAttribute(PullRequestConstantes.USUARIO_LOGADO, usuarioLogado);

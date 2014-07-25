@@ -1,5 +1,5 @@
 package br.com.vortice.pullrequest.web.faces;
-
+/*
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,4 +49,5 @@ public class ResponsavelConsultaFaces extends ResponsavelFaces{
 	public void setResponsaveis(List<Responsavel> responsaveis) {
 		this.responsaveis = responsaveis;
 	}
-}
+	
+}*/

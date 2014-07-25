@@ -3,7 +3,7 @@ package br.com.vortice.treinamento.web.faces;
 import javax.ejb.EJB;
 
 import br.com.vortice.pullRequest.business.UsuarioBean;
-import br.com.vortice.pullRequest.entity.Usuario;
+import br.com.vortice.pullRequest.entity.UsuarioEntity;
 
 import com.vortice.web.view.BasePageBean;
 
@@ -12,20 +12,20 @@ public class LoginFaces extends BasePageBean {
 	@EJB
 	private UsuarioBean	usuarioBean;
 	
-	private Usuario		usuarioLogado;
+	private UsuarioEntity		usuarioLogado;
 	
 	public LoginFaces(){
-		usuarioLogado = new Usuario();
+		usuarioLogado = new UsuarioEntity();
 	}
 	
 	public void login(){
 		
 	}
 
-	public Usuario getUsuarioLogado() {
+	public UsuarioEntity getUsuarioLogado() {
 		return usuarioLogado;
 	}
-	public void setUsuarioLogado(Usuario usuarioLogado) {
+	public void setUsuarioLogado(UsuarioEntity usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 	}
 }
