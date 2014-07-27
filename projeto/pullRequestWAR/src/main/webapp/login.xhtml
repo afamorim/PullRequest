@@ -93,15 +93,6 @@
 							<h:inputSecret id="password" value="#{loginFaces.usuario.senha}" maxlength="45" styleClass="input-form"/>
 						</p:outputPanel>
 						
-						<p:outputPanel layout="block" styleClass="area-input-100" id="login-box-form-contexto" rendered="#{parametroELaudoFaces.isContextoELaudoAtivado() and parametroELaudoFaces.isContextoELaudoNoLogin()}">
-							<h:outputLabel styleClass="label-campo" value="Contexto de Conexão:" name="outTxtPasswordNm"/>
-							<p:selectOneMenu value="#{loginFaces.contextoConexao}">
-								<f:selectItem itemLabel="SELECIONE"/>
-								<f:selectItem itemLabel="LOCAL" itemValue="LOCAL"/>
-								<f:selectItem itemLabel="EXTERNO" itemValue="NUVEM"/>
-							</p:selectOneMenu>
-						</p:outputPanel>
-						
 						<p:outputPanel layout="block" styleClass="clear"/>
 	
 						<p:outputPanel layout="block" id="login-box-botoes" styleClass="">

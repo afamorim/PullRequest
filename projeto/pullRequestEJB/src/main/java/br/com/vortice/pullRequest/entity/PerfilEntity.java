@@ -10,6 +10,7 @@ import javax.persistence.Table;
 public class PerfilEntity extends PullRequestEntity {
 
 	private String	nome;
+	private Boolean	isAdmin;
 	
 	@Id
 	@Override
@@ -28,5 +29,13 @@ public class PerfilEntity extends PullRequestEntity {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@Column(name="is_admin")
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 }

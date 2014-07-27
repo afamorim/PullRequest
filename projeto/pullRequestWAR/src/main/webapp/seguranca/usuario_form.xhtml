@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/nucleo/template/template.xhtml">
+		
+		<ui:define name="title"></ui:define>
+		<ui:define name="conteudo">
+		
+			<h2>Usuariário Form</h2>  
+			
+			<p:fieldset legend="" toggleable="true" toggleSpeed="500">
+				<p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Nome:" />
+						<p:inputText id="nomeResponsavel" value="#{usuarioFormFaces.usuario.nome}" styleClass="input-form"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Nome:" />
+						<p:inputText id="nomeUsuario" value="#{usuarioFormFaces.usuario.nome}" styleClass="input-form"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Login:" />
+						<p:inputText id="loginUsuario" value="#{usuarioFormFaces.usuario.login}" styleClass="input-form"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Login:" />
+						<p:selectOneMenu value="#{usuarioFormFaces.usuario.perfil.codigo}" effect="fade">  
+							<f:selectItem itemLabel="Selecione" itemValue="" />  
+							<f:selectItems value="#{usuarioFormFaces.perfis}"/>  
+			        	</p:selectOneMenu>  
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Senha:" />
+						<h:inputSecret id="nomeResponsavel" value="#{usuarioFormFaces.usuario.senha}" styleClass="input-form"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Redigite a Senha:" />
+						<h:inputSecrett id="nomeResponsavel" value="#{usuarioFormFaces.rSenha}" styleClass="input-form"/>
+					</p:outputPanel>
+					
+				</p:outputPanel>
+			</p:fieldset>
+
+			<p:outputPanel styleClass="clear" /><br/>
+
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/nucleo/template/template.xhtml">
+		
+		<ui:define name="title">Consulta de Usuário</ui:define>
+		<ui:define name="conteudo">
+		
+			<h2>Consulta de Usuário</h2>  
+			
+			<p:fieldset legend="Filtro" toggleable="true" toggleSpeed="500">
+				<p:outputPanel>
+
+					<p:outputPanel styleClass="area-alinhar-botoes">
+						<p:commandButton icon="ico-consultar" value="Consultar" title="Consultar" action="#{usuarioConsultaFaces.consultar}"  update=":formTemplate:tbUsuario"></p:commandButton>
+						<p:commandButton icon="ico-new" value="Novo" title="Novo Exame" action="#{usuarioConsultaFaces.novo}" ajax="false" ></p:commandButton>
+						<p:commandButton icon="ico-limpar" title="Limpar" value="Limpar" action="#{usuarioConsultaFaces.limparFiltro}" update="formTemplate" ></p:commandButton>
+					</p:outputPanel>
+				</p:outputPanel>
+			</p:fieldset>
+
+			<p:outputPanel styleClass="clear" /><br/>
+			
+			<p:dataTable var="usuario" value="#{usuarioConsultaFaces.usuarios}" emptyMessage="Nenhum Usuário Encontrado" id="tbUsuario"
+				 paginator="true" rows="10"  rowsPerPageTemplate="5,10,15" paginatorPosition="bottom" paginatorAlwaysVisible="false"
+				 currentPageReportTemplate="Exibindo {startRecord}-{endRecord} de {totalRecords}" lazy="true"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  >
+                 
+				<p:column sortBy="#{usuario.codigo}" headerText="Número de Controle Usuário"><h:outputText value="#{usuario.codigo}"/></p:column>
+				
+				<p:column sortBy="#{usuario.nome}" headerText="Nome"><h:outputText value="#{usuario.nome}"/></p:column>
+				
+				<p:column sortBy="#{usuario.login}" headerText="Login"><h:outputText value="#{usuario.login}"/></p:column>
+				
+				<p:column headerText="Editar">
+					<h:outputLink value="usuario_form.xhtml?codigo=#{usario.codigo}">
+						<h:graphicImage value="/nucleo/images/edit.png"/>
+					</h:outputLink>
+				</p:column>
+
+				<p:column headerText="Remover">
+					<p:commandLink   oncomplete="dlgConfirmExclusao.show();">
+						<f:setPropertyActionListener target="#{usuarioConsultaFaces.usuario.codigo}" value="#{usuario.codigo}" ></f:setPropertyActionListener>
+						<h:graphicImage value="/nucleo/images/excluir.png"/>
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+			
+			<p:confirmDialog showEffect="fade" hideEffect="explode" icon="ui-icon-alert" id="confirmExclusao" widgetVar="dlgConfirmExclusao"  severity="alert" 
+				header="Confirmação" message="Tem certeza que deseja confirmar a exclusão do usuário? Essa ação não poderá ser desfeita">
+		        <p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{usuarioConsultaFaces.remover}" update=":formTemplate:tbUsuario" oncomplete="dlgConfirmExclusao.hide();"/>
+		        <p:commandButton value="Não" styleClass="ui-confirmdialog-no" icon="ui-icon-close" oncomplete="dlgConfirmExclusao.hide();"/>
+		    </p:confirmDialog>
+
+		    
+		</ui:define>
+	</ui:composition>
+</html>

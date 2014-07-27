@@ -1,4 +1,4 @@
-package br.com.vortice.pullrequest.web.filter;
+package br.com.vortice.pullrequest.seguranca.web.filter;
 
 import java.io.IOException;
 
