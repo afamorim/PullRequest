@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,6 +27,8 @@ public class UsuarioEntity extends PullRequestEntity {
 	
 	@Id
 	@Override
+	@Column(name = "codigo")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getCodigo() {
 		return super.getCodigo();
 	}

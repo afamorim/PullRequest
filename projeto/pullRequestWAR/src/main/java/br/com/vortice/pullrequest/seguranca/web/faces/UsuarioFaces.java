@@ -6,7 +6,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.vortice.pullRequest.business.PerfilBean;
 import br.com.vortice.pullRequest.business.UsuarioBean;
@@ -40,12 +41,19 @@ public class UsuarioFaces extends BasePageBean{
 	
 	@PostConstruct
 	public void init(){
+		if (!FacesContext.getCurrentInstance().isPostback())
+		{
+			System.out.println("TESTE");
+		}else{
+			System.out.println("TESTE 1");
+		}
 		setPerfis(perfilBean.findAll());
 	}
 	
 	public void incializarUsuario(){
 		setUsuario(new UsuarioEntity());
 		getUsuario().setPerfil(new PerfilEntity());
+		getUsuario().setAtivo(true);
 	}
 	
 	public void limparFiltro(){
@@ -53,7 +61,7 @@ public class UsuarioFaces extends BasePageBean{
 	}
 	
 	public String novo(){
-		return "/seguranca/usario_form.xhtml";
+		return "/seguranca/usuario_form.xhtml";
 	}
 	
 	public String consulta(){

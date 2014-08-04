@@ -1,7 +1,7 @@
 package br.com.vortice.pullrequest.seguranca.web.faces;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 
 @SuppressWarnings("serial")
 @ManagedBean

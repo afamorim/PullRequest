@@ -1,16 +1,22 @@
 package br.com.vortice.pullRequest.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="PERFIL")
 public class PerfilEntity extends PullRequestEntity {
 
-	private String	nome;
-	private Boolean	isAdmin;
+	private String		nome;
+	private Boolean		isAdmin;
+	private List<URL>	urls;
 	
 	@Id
 	@Override
@@ -37,5 +43,16 @@ public class PerfilEntity extends PullRequestEntity {
 	}
 	public void setIsAdmin(Boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	@ManyToMany
+	@JoinTable(name="perfil_url", 
+		joinColumns=@JoinColumn(name="perfil_codigo"), 
+		inverseJoinColumns=@JoinColumn(name="url_codigo"))
+	public List<URL> getUrls() {
+		return urls;
+	}
+	public void setUrls(List<URL> urls) {
+		this.urls = urls;
 	}
 }

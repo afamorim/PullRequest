@@ -1,9 +1,11 @@
 package br.com.vortice.pullrequest.seguranca.web.faces;
 
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 
 import com.vortice.core.util.VorticeUtil;
 
@@ -35,11 +37,13 @@ public class UsuarioFormFaces extends UsuarioFaces {
 				setUsuario(getUsuarioBean().findByPrimaryKey(getUsuario()));
 			}
 		}
+		super.init();
 	}
 	
 	public void salvar(){
 		try {
 			if (getUsuario().getCodigo() == null){
+				getUsuario().setDataCadastro(new Date());
 				getUsuarioBean().insert(getUsuario());
 				super.addMessageSucesso("Usuário inserido com sucesso.");
 			}else{
@@ -49,6 +53,11 @@ public class UsuarioFormFaces extends UsuarioFaces {
 		} catch (Exception e) {
 			tratarExcecao(e);
 		}
+	}
+	
+	@Override
+	public String consulta(){
+		return "/seguranca/usuario_consulta.xhtml";
 	}
 
 	public Long getCodigo() {

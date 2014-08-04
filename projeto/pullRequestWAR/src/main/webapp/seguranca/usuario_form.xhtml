@@ -17,8 +17,11 @@
 				<p:outputPanel>
 					
 					<p:outputPanel styleClass="area-input-10">
-						<h:outputLabel styleClass="label-campo" value="Nome:" />
-						<p:inputText id="nomeResponsavel" value="#{usuarioFormFaces.usuario.nome}" styleClass="input-form"/>
+						<h:outputLabel styleClass="label-campo" value="Perfil" />
+						<p:selectOneMenu value="#{usuarioFormFaces.usuario.perfil.codigo}" effect="fade">  
+							<f:selectItem itemLabel="Selecione" itemValue="" />  
+							<f:selectItems value="#{usuarioFormFaces.perfis}" itemLabel="#{perfil.nome}" itemValue="#{perfil.codigo}" var="perfil"/>  
+			        	</p:selectOneMenu>  
 					</p:outputPanel>
 					
 					<p:outputPanel styleClass="area-input-10">
@@ -32,21 +35,26 @@
 					</p:outputPanel>
 					
 					<p:outputPanel styleClass="area-input-10">
-						<h:outputLabel styleClass="label-campo" value="Login:" />
-						<p:selectOneMenu value="#{usuarioFormFaces.usuario.perfil.codigo}" effect="fade">  
-							<f:selectItem itemLabel="Selecione" itemValue="" />  
-							<f:selectItems value="#{usuarioFormFaces.perfis}"/>  
-			        	</p:selectOneMenu>  
-					</p:outputPanel>
-					
-					<p:outputPanel styleClass="area-input-10">
 						<h:outputLabel styleClass="label-campo" value="Senha:" />
-						<h:inputSecret id="nomeResponsavel" value="#{usuarioFormFaces.usuario.senha}" styleClass="input-form"/>
+						<h:inputSecret id="senhaUsuario" value="#{usuarioFormFaces.usuario.senha}" styleClass="input-form"/>
 					</p:outputPanel>
 					
 					<p:outputPanel styleClass="area-input-10">
 						<h:outputLabel styleClass="label-campo" value="Redigite a Senha:" />
-						<h:inputSecrett id="nomeResponsavel" value="#{usuarioFormFaces.rSenha}" styleClass="input-form"/>
+						<h:inputSecret id="redigiteSenha" value="#{usuarioFormFaces.rSenha}" styleClass="input-form"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Ativo:" />
+						<h:selectBooleanCheckbox value="#{usuarioFormFaces.usuario.ativo}" />
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="clear" />
+					
+					<p:outputPanel styleClass="area-alinhar-botoes">
+						<p:commandButton icon="ico-salvar" value="Salvar" title="Salvar" action="#{usuarioFormFaces.salvar}"></p:commandButton>
+						<p:commandButton icon="ico-consultar" value="Consulta" title="Consulta" action="#{usuarioFormFaces.consulta}"></p:commandButton>
+						<p:commandButton icon="ico-limpar" title="Limpar" value="Limpar" action="#{usuarioFormFaces.limparFiltro}" update="formTemplate" ></p:commandButton>
 					</p:outputPanel>
 					
 				</p:outputPanel>

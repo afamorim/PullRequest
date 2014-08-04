@@ -18,7 +18,7 @@
 
 					<p:outputPanel styleClass="area-alinhar-botoes">
 						<p:commandButton icon="ico-consultar" value="Consultar" title="Consultar" action="#{usuarioConsultaFaces.consultar}"  update=":formTemplate:tbUsuario"></p:commandButton>
-						<p:commandButton icon="ico-new" value="Novo" title="Novo Exame" action="#{usuarioConsultaFaces.novo}" ajax="false" ></p:commandButton>
+						<p:commandButton icon="ico-new" value="Novo" title="Novo Exame" action="#{usuarioConsultaFaces.novo}" ></p:commandButton>
 						<p:commandButton icon="ico-limpar" title="Limpar" value="Limpar" action="#{usuarioConsultaFaces.limparFiltro}" update="formTemplate" ></p:commandButton>
 					</p:outputPanel>
 				</p:outputPanel>
@@ -38,14 +38,14 @@
 				<p:column sortBy="#{usuario.login}" headerText="Login"><h:outputText value="#{usuario.login}"/></p:column>
 				
 				<p:column headerText="Editar">
-					<h:outputLink value="usuario_form.xhtml?codigo=#{usario.codigo}">
+					<h:outputLink value="usuario_form.xhtml?codigo=#{usuario.codigo}">
 						<h:graphicImage value="/nucleo/images/edit.png"/>
 					</h:outputLink>
 				</p:column>
 
 				<p:column headerText="Remover">
-					<p:commandLink   oncomplete="dlgConfirmExclusao.show();">
-						<f:setPropertyActionListener target="#{usuarioConsultaFaces.usuario.codigo}" value="#{usuario.codigo}" ></f:setPropertyActionListener>
+					<p:commandLink oncomplete="dlgConfirmExclusao.show();">
+						<f:setPropertyActionListener target="#{usuarioConsultaFaces.usuario.codigo}" value="#{usuario.codigo}" />
 						<h:graphicImage value="/nucleo/images/excluir.png"/>
 					</p:commandLink>
 				</p:column>
