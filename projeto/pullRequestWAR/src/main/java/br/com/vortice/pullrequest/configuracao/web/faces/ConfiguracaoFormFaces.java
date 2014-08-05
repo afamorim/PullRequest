@@ -33,7 +33,7 @@ public class ConfiguracaoFormFaces extends BasePageBean {
 	private ConfiguracaoBean configuracaooBean;
 	
 	public ConfiguracaoFormFaces(){
-		inicializarModel();
+		
 	}
 	
 	@PostConstruct
@@ -44,7 +44,7 @@ public class ConfiguracaoFormFaces extends BasePageBean {
 		}else{
 			System.out.println("TESTE 1");
 		}
-
+		inicializarModel();
 	}
 	
 	public void inicializarModel(){

@@ -29,7 +29,30 @@ public class SMSZeenviaGateway extends SMSGatewayAb{
 		} catch (ClientHumanException e) {
 			throw new AplicacaoException("Erro ao tentar enviar SMS pelo Gateway -> "+e.getMessage());
 		}
-
+	}
+	
+	private void tratarRetorno(Response response) throws AplicacaoException{
+		int codigoRetorno = Integer.valueOf(response.getReturnCode());
+		switch (codigoRetorno) {
+		case 100:
+		case 110:
+		case 120:
+		break;
+		case 140:
+			throw new AplicacaoException("Número não coberto.");
+		case 145:
+			throw new AplicacaoException("Número inativo.");
+		case 150:
+		case 160:
+		case 161:
+		case 162:
+		case 170:
+		case 171:
+			throw new AplicacaoException("A operadora de SMS não confirma o recebimento ("+response.getReturnDescription()+").");
+			
+		default:
+			break;
+		}
 	}
 	
 	private SimpleMessage convertToSimpleMessage(SMSEntity smsEntity) throws AplicacaoException{
@@ -50,7 +73,7 @@ public class SMSZeenviaGateway extends SMSGatewayAb{
 	
 	public static void main(String[] args) throws Exception{
 		SMSEntity smsEntity = new SMSEntity();
-		smsEntity.setDestino("7188672738");
+		smsEntity.setDestino("718867a2738");
 		smsEntity.setConteudo("teste de envio sms usando API ZEenvia...");
 		try{
 		new SMSZeenviaGateway().enviarSMS(smsEntity);
