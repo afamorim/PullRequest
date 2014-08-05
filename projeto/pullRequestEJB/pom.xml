@@ -78,6 +78,47 @@
     		<scope>provided</scope>
     	</dependency>
     	
+    	<dependency>
+    		<groupId>zeenvia.sms</groupId>
+    		<artifactId>client-gateway</artifactId>
+    		<version>1.0</version>
+    	</dependency>
+    	
+    	<!-- dependencias do zeenvia para o SMS -->
+    	<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+				
+		
+		 <!-- fim dependencias do zeenvia para o SMS -->
+    	
+	    <dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+    	
+    	
     <!--  
     <dependency>
 		<groupId>org.jboss.spec.javax.ejb</groupId>
