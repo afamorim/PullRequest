@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/nucleo/template/template.xhtml">
+		
+		<ui:define name="title"></ui:define>
+		<ui:define name="conteudo">
+		
+			<h2>Usuariário Form</h2>  
+			
+			<p:fieldset legend="" toggleable="true" toggleSpeed="500">
+				<p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Nome:" />
+						<p:inputText id="nomeUsuario" value="#{configuracaoFormFaces.configuracao.nome}" styleClass="input-form"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Valor:" />
+						<p:inputText id="loginUsuario" value="#{configuracaoFormFaces.configuracao.valor}" styleClass="input-form"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="clear" />
+					
+					<p:outputPanel styleClass="area-alinhar-botoes">
+						<p:commandButton icon="ico-salvar" value="Salvar" title="Salvar" action="#{usuarioFormFaces.salvar}"></p:commandButton>
+						<p:commandButton icon="ico-limpar" title="Limpar" value="Limpar" action="#{usuarioFormFaces.limparFiltro}" update="formTemplate" ></p:commandButton>
+					</p:outputPanel>
+					
+				</p:outputPanel>
+			</p:fieldset>
+
+			<p:outputPanel styleClass="clear" /><br/>
+			
+			<p:fieldset legend="Configurações" toggleable="true" toggleSpeed="500">
+				
+					<p:dataTable var="configuracao" value="#{configuracaoFormFaces.configuracoes}" emptyMessage="Nenhuma configuração encontrada" id="tbconfiguracao"
+			 		paginator="true" rows="25"  rowsPerPageTemplate="5,10,15"
+				 	paginatorPosition="bottom" paginatorAlwaysVisible="false"
+				 	currentPageReportTemplate="Exibindo {startRecord}-{endRecord} de {totalRecords}"
+                 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+			
+						<p:column sortBy="#{configuracao.codigo}" headerText="Código"><h:outputText value="#{configuracao.codigo}"/></p:column>
+						<p:column sortBy="#{configuracao.nome}" headerText="Nome"><h:inputText value="#{configuracao.nome}" size="50"/></p:column>
+						<p:column sortBy="#{configuracao.valor}" headerText="Valor"><h:inputText value="#{configuracao.valor}" size="100"/></p:column>
+						
+					</p:dataTable>
+					
+					<p:outputPanel styleClass="clear" />
+					
+					<p:outputPanel styleClass="area-alinhar-botoes">
+						<p:commandButton icon="ico-salvar" value="Salvar PACS" title="Salvar PACS" action="#{configuracaoFormFaces.salvar}" />
+					</p:outputPanel>
+			</p:fieldset>
+
+		</ui:define>
+	</ui:composition>
+</html>

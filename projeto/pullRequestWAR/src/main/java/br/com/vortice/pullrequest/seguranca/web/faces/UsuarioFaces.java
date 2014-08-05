@@ -34,6 +34,7 @@ public class UsuarioFaces extends BasePageBean{
 	private PerfilBean			perfilBean;
 	
 	public UsuarioFaces(){
+		super();
 		incializarUsuario();
 		
 		usuarios = new ArrayList<UsuarioEntity>();

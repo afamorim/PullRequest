@@ -92,7 +92,6 @@
 		<dependency>
     		<groupId>com.vortice.core</groupId>
     		<artifactId>vortice-core</artifactId>
-    		<scope>provided</scope>
     	</dependency>
     	
     	<dependency>
