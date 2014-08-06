@@ -39,6 +39,18 @@
 		<param-value>TRUE</param-value>
 	</context-param>
 	
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	
     <!-- Faces Servlet -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
