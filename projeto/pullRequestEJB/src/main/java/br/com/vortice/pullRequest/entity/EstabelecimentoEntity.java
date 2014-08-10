@@ -18,6 +18,7 @@ import org.hibernate.validator.NotNull;
 @Table(name="ESTABELECIMENTO")
 public class EstabelecimentoEntity extends PullRequestEntity{
 
+	private static final long serialVersionUID = 1064864526905921703L;
 	private String	nome;
 	private Date	dataCadastro;
 	private String	telefone;
