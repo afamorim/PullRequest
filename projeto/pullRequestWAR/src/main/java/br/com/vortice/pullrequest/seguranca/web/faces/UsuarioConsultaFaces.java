@@ -23,6 +23,7 @@ public class UsuarioConsultaFaces extends UsuarioFaces {
 	public void remover(){
 		try {
 			getUsuarioBean().delete(getUsuario());
+			this.consultar();
 			addMessageSucesso("Usuário removido com sucesso.");
 		} catch (Exception e) {
 			tratarExcecao(e);

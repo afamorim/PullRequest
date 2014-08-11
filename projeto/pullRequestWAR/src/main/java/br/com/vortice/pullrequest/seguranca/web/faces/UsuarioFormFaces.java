@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import com.vortice.core.exception.AplicacaoException;
 import com.vortice.core.util.VorticeUtil;
 
 @ManagedBean
@@ -24,7 +25,7 @@ public class UsuarioFormFaces extends UsuarioFaces {
 	
 	@PostConstruct
 	public void init(){
-		if (!FacesContext.getCurrentInstance().isPostback())
+		if (FacesContext.getCurrentInstance().isPostback())
 		{
 			if (codigo != null){
 				getUsuario().setCodigo(new Long(getCodigo()));
@@ -32,9 +33,11 @@ public class UsuarioFormFaces extends UsuarioFaces {
 			}
 		}else{
 			String codigoParameter = getRequest().getParameter("codigo");
-			if(!VorticeUtil.isEmpty(codigoParameter)){
+			if(codigoParameter != null && !"".equals(codigoParameter)){
 				getUsuario().setCodigo(Long.valueOf(codigoParameter));
 				setUsuario(getUsuarioBean().findByPrimaryKey(getUsuario()));
+				codigo = new Long(codigoParameter);
+				rSenha = getUsuario().getSenha();
 			}
 		}
 		super.init();
@@ -42,6 +45,12 @@ public class UsuarioFormFaces extends UsuarioFaces {
 	
 	public void salvar(){
 		try {
+			if (getUsuario().getSenha() != null){
+				if (!getUsuario().getSenha().equals(rSenha)){
+					throw new AplicacaoException("As senhas digitadas devem ser similares.");
+				}
+			}
+			
 			if (getUsuario().getCodigo() == null){
 				getUsuario().setDataCadastro(new Date());
 				getUsuarioBean().insert(getUsuario());
@@ -52,6 +61,14 @@ public class UsuarioFormFaces extends UsuarioFaces {
 			}
 		} catch (Exception e) {
 			tratarExcecao(e);
+		}
+	}
+	
+	public boolean getDesabilitaSenha(){
+		if (getUsuario().getCodigo() != null && getUsuario().getCodigo() > 0){
+			return true;
+		}else{
+			return false;
 		}
 	}
 	

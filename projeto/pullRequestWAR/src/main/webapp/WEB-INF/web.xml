@@ -20,11 +20,6 @@
 	</context-param>
 	
 	<context-param>
-	    <param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
-	    <param-value>false</param-value>
-	</context-param>
-	
-	<context-param>
         <param-name>javax.faces.INTERPRET_STRING_SUBMITTED_VALUE_AS_NULL</param-name>
         <param-value>true</param-value>
     </context-param>
@@ -36,8 +31,18 @@
 	
 	<context-param>
 		<param-name>MODO_DESENVOLVIMENTO</param-name>
-		<param-value>TRUE</param-value>
+		<param-value>FALSE</param-value>
 	</context-param>
+	
+	<filter>
+		<filter-name>PullRequestFilter</filter-name>
+		<filter-class>br.com.vortice.pullrequest.seguranca.web.filter.PullRequestFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>PullRequestFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
 	<filter>
 		<filter-name>PrimeFaces FileUpload Filter</filter-name>

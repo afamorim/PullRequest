@@ -36,12 +36,12 @@
 					
 					<p:outputPanel styleClass="area-input-10">
 						<h:outputLabel styleClass="label-campo" value="Senha:" />
-						<h:inputSecret id="senhaUsuario" value="#{usuarioFormFaces.usuario.senha}" styleClass="input-form"/>
+						<h:inputSecret id="senhaUsuario" value="#{usuarioFormFaces.usuario.senha}" styleClass="input-form" disabled="#{usuarioFormFaces.desabilitaSenha}"/>
 					</p:outputPanel>
 					
 					<p:outputPanel styleClass="area-input-10">
 						<h:outputLabel styleClass="label-campo" value="Redigite a Senha:" />
-						<h:inputSecret id="redigiteSenha" value="#{usuarioFormFaces.rSenha}" styleClass="input-form"/>
+						<h:inputSecret id="redigiteSenha" value="#{usuarioFormFaces.rSenha}" styleClass="input-form" disabled="#{usuarioFormFaces.desabilitaSenha}"/>
 					</p:outputPanel>
 					
 					<p:outputPanel styleClass="area-input-10">
@@ -53,7 +53,7 @@
 					
 					<p:outputPanel styleClass="area-alinhar-botoes">
 						<p:commandButton icon="ico-salvar" value="Salvar" title="Salvar" action="#{usuarioFormFaces.salvar}"></p:commandButton>
-						<p:commandButton icon="ico-consultar" value="Consulta" title="Consulta" action="#{usuarioFormFaces.consulta}"></p:commandButton>
+						<p:commandButton icon="ico-consultar" value="Consulta" title="Consulta" action="#{usuarioFormFaces.consulta}" ajax="false"></p:commandButton>
 						<p:commandButton icon="ico-limpar" title="Limpar" value="Limpar" action="#{usuarioFormFaces.limparFiltro}" update="formTemplate" ></p:commandButton>
 					</p:outputPanel>
 					

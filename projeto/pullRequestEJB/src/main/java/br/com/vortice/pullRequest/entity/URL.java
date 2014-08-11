@@ -7,11 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="URL")
 public class URL extends PullRequestEntity {
 
 	private String url;
+	private Boolean	liberada;
 	
 	@Id
 	@Override
@@ -33,4 +35,11 @@ public class URL extends PullRequestEntity {
 		this.url = url;
 	}
 	
+	@Column(name="liberada")
+	public Boolean getLiberada() {
+		return liberada;
+	}
+	public void setLiberada(Boolean liberada) {
+		this.liberada = liberada;
+	}
 }
