@@ -14,6 +14,12 @@ public class ConfiguracaoBean extends GenericBean<ConfiguracaoEntity, Long> {
 		setDAO(new ConfiguracaoDAO());
 	}
 	
+	public void updateConfiguracoes(List<ConfiguracaoEntity> configuracoes){
+		for (ConfiguracaoEntity configuracao : configuracoes){
+			getDAO().update(configuracao);
+		}
+	}
+	
 	public List<ConfiguracaoEntity> findByFilter(ConfiguracaoEntity aConfiguracao){
 		return getConfiguracaoDAO().findByFilter(aConfiguracao);
 	}

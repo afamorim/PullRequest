@@ -1,15 +1,16 @@
 CREATE SEQUENCE public.seq_configuracao;
 
 CREATE TABLE public.CONFIGURACAO (
-                codigo INTEGER NOT NULL,
-                valor VARCHAR NOT NULL,
-                nome VARCHAR NOT NULL,
-                CONSTRAINT configuracao_pk PRIMARY KEY (codigo)
+        codigo BIGINT NOT NULL DEFAULT nextval('public.seq_configuracao'),
+        valor VARCHAR NOT NULL,
+        nome VARCHAR NOT NULL,
+        CONSTRAINT configuracao_pk PRIMARY KEY (codigo)
 );
 
+CREATE SEQUENCE public.seq_sms;
 
 CREATE TABLE public.SMS (
-                codigo INTEGER NOT NULL,
+                codigo BIGINT NOT NULL DEFAULT nextval('public.seq_sms'),
                 FILA_CODIGO BIGINT NOT NULL,
                 CLIENTE_CODIGO BIGINT NOT NULL,
                 conteudo VARCHAR NOT NULL,

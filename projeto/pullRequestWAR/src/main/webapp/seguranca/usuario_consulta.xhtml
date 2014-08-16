@@ -15,7 +15,17 @@
 			
 			<p:fieldset legend="Filtro" toggleable="true" toggleSpeed="500">
 				<p:outputPanel>
-
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Nome:" />
+						<p:inputText id="nomeUsuario" value="#{usuarioConsultaFaces.usuario.nome}" styleClass="input-form"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Login:" />
+						<p:inputText id="loginUsuario" value="#{usuarioConsultaFaces.usuario.login}" styleClass="input-form"/>
+					</p:outputPanel>
+					
 					<p:outputPanel styleClass="area-alinhar-botoes">
 						<p:commandButton icon="ico-consultar" value="Consultar" title="Consultar" action="#{usuarioConsultaFaces.consultar}"  update=":formTemplate:tbUsuario"></p:commandButton>
 						<p:commandButton icon="ico-new" value="Novo" title="Novo Exame" action="#{usuarioConsultaFaces.novo}"></p:commandButton>

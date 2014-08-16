@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/nucleo/template/template.xhtml">
+		
+		<ui:define name="title">LOG SMS</ui:define>
+		<ui:define name="conteudo">
+		
+			<p:fieldset legend="Filtro" toggleable="true" toggleSpeed="500">
+				<p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Data de Envio Início:" />
+						<p:calendar id="dtEnvioInicio" value="#{smsConsultaFaces.smsAssembler.dataEnvioInicio}"></p:calendar>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Data de Envio Fim:" />
+						<p:calendar id="dtEnvioFim" value="#{smsConsultaFaces.smsAssembler.dataEnvioFim}"></p:calendar>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-alinhar-botoes">
+						<p:commandButton icon="ico-consultar" value="Consultar" title="Consultar" action="#{smsConsultaFaces.consultar}"  update=":formTemplate:tbSMS"></p:commandButton>
+						<p:commandButton icon="ico-limpar" title="Limpar" value="Limpar" action="#{smsConsultaFaces.limparFiltro}" update="formTemplate" ></p:commandButton>
+					</p:outputPanel>
+				</p:outputPanel>
+			</p:fieldset>
+			
+			<p:outputPanel styleClass="clear" /><br/>
+			
+			<p:dataTable var="sms" value="#{smsConsultaFaces.listaSMS}" emptyMessage="Nenhum SMS Enviado" id="tbSMS"
+				paginator="true" rows="10"  rowsPerPageTemplate="5,10,15" paginatorPosition="bottom" paginatorAlwaysVisible="false"
+				currentPageReportTemplate="Exibindo {startRecord}-{endRecord} de {totalRecords}" lazy="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  >
+				
+				<p:column sortBy="#{sms.dataEnvio}" headerText="Data de Envio"><h:outputText value="#{sms.dataEnvio}"/></p:column>
+				
+				<p:column sortBy="#{sms.destino}" headerText="Número Destino"><h:outputText value="#{sms.destino}"/></p:column>
+				
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+</html>

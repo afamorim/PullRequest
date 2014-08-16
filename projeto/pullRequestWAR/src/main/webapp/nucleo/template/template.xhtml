@@ -64,8 +64,12 @@
 						<p:menubar>
 							<p:submenu label="Segurança">
 								<p:menuitem value="Usuario" url="/seguranca/usuario_consulta.xhtml"/>
-							</p:submenu>		
-							<p:menuitem value="Sair" action="#{loginFaces.logout}" ajax="false"></p:menuitem>
+							</p:submenu>	
+							<p:submenu label="Sistema">
+								<p:menuitem value="Configuração" url="/sistema/configuracao_form.xhtml"/>
+								<p:menuitem value="SMS" url="/sistema/sms_log.xhtml"/>
+								<p:menuitem value="Sair" action="#{loginFaces.logout}" ajax="false"></p:menuitem>
+							</p:submenu>	
 						 </p:menubar>
 					 </h:form>
 				 </span>

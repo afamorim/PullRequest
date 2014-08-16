@@ -20,7 +20,7 @@
 	</context-param>
 	
 	<context-param>
-        <param-name>javax.faces.INTERPRET_STRING_SUBMITTED_VALUE_AS_NULL</param-name>
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
         <param-value>true</param-value>
     </context-param>
     

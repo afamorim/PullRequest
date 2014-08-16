@@ -44,7 +44,7 @@ public class PullRequestFilter implements Filter {
 		
 		UsuarioEntity usuarioLogado = (UsuarioEntity)session.getAttribute(PullRequestConstantes.USUARIO_LOGADO);
 		System.out.println("httpServletRequest.getRequestURI() " + httpServletRequest.getRequestURI());
-		if (isUrlLivres(httpServletRequest)){
+		if (isUrlLivres(httpServletRequest) || isUrlLiberada(new String[]{}, httpServletRequest)){
 			filterChain.doFilter(request, response);
 		}else if (usuarioLogado != null)
 		{
