@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Table(name="PERFIL")
 public class PerfilEntity extends PullRequestEntity {
 
+	private static final long serialVersionUID = -2629575899456033601L;
 	private String		nome;
 	private Boolean		isAdmin;
 	private List<URL>	urls;

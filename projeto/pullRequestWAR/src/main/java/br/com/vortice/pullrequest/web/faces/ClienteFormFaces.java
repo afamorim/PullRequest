@@ -69,9 +69,7 @@ public class ClienteFormFaces extends ClienteFaces{
 				if(foto != null) {
 					getEntity().setFoto(foto.getContents());
 				}
-				UsuarioEntity usuarioCadastro = new UsuarioEntity();
-				usuarioCadastro.setCodigo(1L);
-				getEntity().setUsuarioCadastro(usuarioBean.findByPrimaryKey(usuarioCadastro));
+				//TODO Usuario Logado
 				setEntity(bean.insertEntity(getEntity()));
 				addMessageSucesso("Cliente cadastrado com sucesso!");
 			}else{

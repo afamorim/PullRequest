@@ -17,6 +17,7 @@ import javax.persistence.TemporalType;
 @Table(name="USUARIO")
 public class UsuarioEntity extends PullRequestEntity {
 
+	private static final long serialVersionUID = 231490282200875354L;
 	private String	nome;
 	private String	login;
 	private String	senha;
