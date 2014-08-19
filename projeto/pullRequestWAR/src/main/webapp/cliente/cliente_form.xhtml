@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/nucleo/template/template.xhtml">
+	
+		<f:metadata>  
+			<f:event type="preRenderView" listener="#{clienteFormFaces.render}"/>
+	 	</f:metadata>
+		
+		<ui:define name="title"></ui:define>
+		<ui:define name="conteudo">
+		
+			<h2>Cliente Form</h2>  
+			
+			<p:fieldset legend="" toggleable="true" toggleSpeed="500">
+				<p:outputPanel>
+					
+					<p:outputPanel id="opFoto">
+						<p:graphicImage value="#{clienteFormFaces.fotoCliente}" rendered="#{!empty clienteFormFaces.entity.codigo}"/>
+						<p:graphicImage value="/nucleo/images/sem_imagem.gif" rendered="#{empty clienteFormFaces.entity.codigo}" height="200"/>
+						<br/>
+						<p:fileUpload value="#{clienteFormFaces.foto}" mode="simple"></p:fileUpload>
+						<p:commandButton value="Mudar Foto" ajax="true" oncomplete="dlgConfirmTrocaFoto.show();" rendered="#{!empty clienteFormFaces.entity.codigo}"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-15">
+						<h:outputLabel styleClass="label-campo" value="Nome:" />
+						<p:inputText id="nomeCliente" value="#{clienteFormFaces.entity.nome}" maxlength="120" styleClass="input-form"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Telefone:" />
+						<p:inputMask id="telefoneCliente" value="#{clienteFormFaces.entity.telefone}" converter="telefoneConverter" mask="(99)9999-9999" styleClass="input-form"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-15">
+						<h:outputLabel styleClass="label-campo" value="E-mail:" />
+						<p:inputText id="emailCliente" validator="emailValidador" maxlength="70" value="#{clienteFormFaces.entity.email}" styleClass="input-form"/>
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Data de Nascimento:" />
+						<p:calendar id="dataNascimentoCliente" value="#{clienteFormFaces.entity.dataNascimento}" pattern="dd/MM/yyyy" readonlyInput="true" navigator="true" mask="true" styleClass="input-form" />
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-15">
+						<h:outputLabel styleClass="label-campo" value="Endereço:" />
+						<p:inputText value="#{clienteFormFaces.entity.endereco}" id="enderecoCliente" maxlength="120" styleClass="input-form" />
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Bairro:" />
+						<p:inputText value="#{clienteFormFaces.entity.bairro}" id="bairroCliente" maxlength="60" styleClass="input-form" />
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Apelido:" />
+						<p:inputText value="#{clienteFormFaces.entity.apelido}" id="apelidoCliente" maxlength="30" styleClass="input-form" />
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="clear" />
+					
+					<p:outputPanel styleClass="area-alinhar-botoes">
+						<p:commandButton icon="ico-salvar" value="Salvar" title="Salvar" action="#{clienteFormFaces.salvar}" type="submit" ajax="false"></p:commandButton>
+						<p:commandButton icon="ico-consultar" value="Consulta" title="Consulta" action="#{clienteFormFaces.consulta}"></p:commandButton>
+						<p:commandButton icon="ico-limpar" title="Limpar" value="Limpar" action="#{clienteFormFaces.limparEntity}" update="formTemplate" ></p:commandButton>
+					</p:outputPanel>
+					
+				</p:outputPanel>
+			</p:fieldset>
+
+			<p:outputPanel styleClass="clear" /><br/>
+			
+			<p:confirmDialog showEffect="fade" hideEffect="explode" icon="ui-icon-alert" id="confirmTrocaFoto" widgetVar="dlgConfirmTrocaFoto"  severity="alert" 
+				header="Confirmação" message="Tem certeza que deseja trocar a foto do cliente? Essa ação não poderá ser desfeita e apagará as outras alterações.">
+		        <p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{clienteFormFaces.uploadFoto}" update=":formTemplate" oncomplete="dlgConfirmTrocaFoto.hide();"/>
+		        <p:commandButton value="Não" styleClass="ui-confirmdialog-no" icon="ui-icon-close" oncomplete="dlgConfirmTrocaFoto.hide();"/>
+		    </p:confirmDialog>
+
+		</ui:define>
+	</ui:composition>
+</html>

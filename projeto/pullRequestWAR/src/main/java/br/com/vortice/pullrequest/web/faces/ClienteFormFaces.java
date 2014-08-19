@@ -1,8 +1,18 @@
 package br.com.vortice.pullrequest.web.faces;
 
+import java.io.ByteArrayInputStream;
+
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+import org.primefaces.model.UploadedFile;
+
+import br.com.vortice.pullRequest.business.UsuarioBean;
+import br.com.vortice.pullRequest.entity.UsuarioEntity;
 
 import com.vortice.core.util.VorticeUtil;
 
@@ -12,6 +22,11 @@ public class ClienteFormFaces extends ClienteFaces{
 
 	private static final long serialVersionUID = 4427328927142766044L;
 	
+	private UploadedFile foto;
+	
+	@EJB
+	private UsuarioBean usuarioBean;
+
 	public ClienteFormFaces(){
 		this.init();
 	}
@@ -31,9 +46,32 @@ public class ClienteFormFaces extends ClienteFaces{
 		}
 	}
 	
-	public void salvar(){
+	public void upload() {
+        if(foto != null) {
+        	setEntity(bean.findByPrimaryKey(getEntity()));
+            getEntity().setFoto(foto.getContents());
+            bean.update(getEntity());
+            addMessageSucesso("Foto alterada com sucesso!");
+        }
+    }
+	
+	public StreamedContent getFotoCliente(){
+		if(getEntity().getFoto()==null){
+			return new DefaultStreamedContent();
+		}else{
+			return new DefaultStreamedContent(new ByteArrayInputStream(getEntity().getFoto()));
+		}
+	}
+	
+	public String salvar(){
 		try{
 			if(getCodigo()==null){
+				if(foto != null) {
+					getEntity().setFoto(foto.getContents());
+				}
+				UsuarioEntity usuarioCadastro = new UsuarioEntity();
+				usuarioCadastro.setCodigo(1L);
+				getEntity().setUsuarioCadastro(usuarioBean.findByPrimaryKey(usuarioCadastro));
 				setEntity(bean.insertEntity(getEntity()));
 				addMessageSucesso("Cliente cadastrado com sucesso!");
 			}else{
@@ -43,6 +81,8 @@ public class ClienteFormFaces extends ClienteFaces{
 		}catch(Exception e){
 			tratarExcecao(e);
 		}
+		
+		return null;
 	}
 	
 	public String remover(){
@@ -54,6 +94,14 @@ public class ClienteFormFaces extends ClienteFaces{
 			tratarExcecao(e);
 		}
 		return null;
+	}
+	
+	public UploadedFile getFoto() {
+		return foto;
+	}
+
+	public void setFoto(UploadedFile foto) {
+		this.foto = foto;
 	}
 
 }

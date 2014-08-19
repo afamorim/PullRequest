@@ -22,13 +22,13 @@ public class ClienteBean extends GenericBean<ClienteEntity,Long>{
 		return ((ClienteDAO)getDAO()).findByFilter(filter);
 	}
 	
-	public ClienteEntity insertEntity(ClienteEntity entity) throws AmbienteException{
+	public ClienteEntity insertEntity(ClienteEntity entity) throws Exception{
 		try{
 			if(this.validarForm(entity)){
 				return super.insert(entity);
 			}
 		}catch(Exception e){
-			throw new AmbienteException(e); 
+			throw new Exception(e); 
 		}
 		return entity;
 	}
