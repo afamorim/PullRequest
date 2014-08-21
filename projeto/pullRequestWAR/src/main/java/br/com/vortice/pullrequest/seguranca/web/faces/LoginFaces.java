@@ -7,13 +7,14 @@ import javax.faces.bean.ViewScoped;
 import br.com.vortice.pullRequest.business.UsuarioBean;
 import br.com.vortice.pullRequest.entity.UsuarioEntity;
 import br.com.vortice.pullRequest.util.PullRequestConstantes;
+import br.com.vortice.pullrequest.web.faces.PullRequestFaces;
 
 import com.vortice.web.view.BasePageBean;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class LoginFaces extends BasePageBean {
+public class LoginFaces extends PullRequestFaces {
 
 	@EJB
 	private UsuarioBean		usuarioBean;

@@ -13,13 +13,14 @@ import br.com.vortice.pullRequest.business.PerfilBean;
 import br.com.vortice.pullRequest.business.UsuarioBean;
 import br.com.vortice.pullRequest.entity.PerfilEntity;
 import br.com.vortice.pullRequest.entity.UsuarioEntity;
+import br.com.vortice.pullrequest.web.faces.PullRequestFaces;
 
 import com.vortice.web.view.BasePageBean;
 
 @ManagedBean
 @ViewScoped
 @SuppressWarnings("serial")
-public class UsuarioFaces extends BasePageBean{
+public class UsuarioFaces extends PullRequestFaces{
 
 	private UsuarioEntity		usuario;
 	
