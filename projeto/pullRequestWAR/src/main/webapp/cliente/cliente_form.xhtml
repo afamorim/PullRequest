@@ -7,13 +7,14 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:composition template="/nucleo/template/template.xhtml">
-	
-		<f:metadata>  
-			<f:event type="preRenderView" listener="#{clienteFormFaces.render}"/>
-	 	</f:metadata>
-		
+
 		<ui:define name="title"></ui:define>
 		<ui:define name="conteudo">
+		
+			<f:metadata>  
+				<f:viewParam name="codigo" value="#{clienteFormFaces.codigo}" />
+				<f:event type="preRenderView" listener="#{clienteFormFaces.render}"/>
+	 		</f:metadata>
 		
 			<h2>Cliente Form</h2>  
 			

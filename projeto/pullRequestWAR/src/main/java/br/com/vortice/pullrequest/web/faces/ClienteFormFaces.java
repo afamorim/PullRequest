@@ -12,7 +12,6 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 import br.com.vortice.pullRequest.business.UsuarioBean;
-import br.com.vortice.pullRequest.entity.UsuarioEntity;
 
 import com.vortice.core.util.VorticeUtil;
 
@@ -38,9 +37,8 @@ public class ClienteFormFaces extends ClienteFaces{
 				setEntity(bean.findByPrimaryKey(getEntity()));
 			}
 		}else{
-			String codigoParameter = getRequest().getParameter("codigo");
-			if(!VorticeUtil.isEmpty(codigoParameter)){
-				getEntity().setCodigo(Long.valueOf(codigoParameter));
+			if(!VorticeUtil.isEmpty(getCodigo())){
+				getEntity().setCodigo(Long.valueOf(getCodigo()));
 				setEntity(bean.findByPrimaryKey(getEntity()));
 			}
 		}
