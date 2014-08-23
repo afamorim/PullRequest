@@ -1,10 +1,13 @@
 package br.com.vortice.pullRequest.entity.assembler;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import br.com.vortice.pullRequest.entity.SMSEntity;
 
-public class SMSAssembler {
+public class SMSAssembler implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private SMSEntity	sms;
 	

@@ -2,6 +2,15 @@ package br.com.vortice.pullRequest.entity;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="CONFIGURACAO")
 public class SMSEntity extends PullRequestEntity {
 	
 	private Long codigo;
@@ -15,12 +24,18 @@ public class SMSEntity extends PullRequestEntity {
 	private Integer retornoEntrega;
 	private Integer codigoFornecedorGateway;
 	
+	@Id
+	@Override
+	@Column(name = "codigo")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
+	
+	@Column(name="conteudo")
 	public String getConteudo() {
 		return conteudo;
 	}
