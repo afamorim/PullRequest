@@ -17,17 +17,21 @@ public class EstabelecimentoFormFaces extends EstabelecimentoFaces {
 	}
 	
 	public void render(){
-		if (!FacesContext.getCurrentInstance().isPostback()){
-			if(getCodigo()!=null){
-				getEntity().setCodigo(getCodigo());
-				setEntity(bean.findByPrimaryKey(getEntity()));
+		try {
+			if (!FacesContext.getCurrentInstance().isPostback()){
+				if(getCodigo()!=null){
+					getEntity().setCodigo(getCodigo());
+					setEntity(bean.findByPrimaryKey(getEntity()));
+				}
+			}else{
+				String codigoParameter = getRequest().getParameter("codigo");
+				if(!VorticeUtil.isEmpty(codigoParameter)){
+					getEntity().setCodigo(Long.valueOf(codigoParameter));
+					setEntity(bean.findByPrimaryKey(getEntity()));
+				}
 			}
-		}else{
-			String codigoParameter = getRequest().getParameter("codigo");
-			if(!VorticeUtil.isEmpty(codigoParameter)){
-				getEntity().setCodigo(Long.valueOf(codigoParameter));
-				setEntity(bean.findByPrimaryKey(getEntity()));
-			}
+		} catch (Exception e) {
+			tratarExcecao(e);
 		}
 	}
 	

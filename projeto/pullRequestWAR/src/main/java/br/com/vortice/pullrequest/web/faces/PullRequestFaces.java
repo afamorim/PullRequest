@@ -12,4 +12,8 @@ public class PullRequestFaces extends BasePageBean {
 	public UsuarioEntity getUsuarioSessao(){
 		return (UsuarioEntity)getHttpSession().getAttribute(PullRequestConstantes.USUARIO_LOGADO);
 	}
+	
+	public Boolean getIsAdmin(){
+		return getUsuarioSessao().getPerfil().getIsAdmin();
+	}
 }

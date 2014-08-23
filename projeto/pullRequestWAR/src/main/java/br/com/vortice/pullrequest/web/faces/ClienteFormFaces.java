@@ -32,26 +32,34 @@ public class ClienteFormFaces extends ClienteFaces{
 	}
 	
 	public void render(){
-		if (!FacesContext.getCurrentInstance().isPostback()){
-			if(getCodigo()!=null){
-				getEntity().setCodigo(getCodigo());
-				setEntity(bean.findByPrimaryKey(getEntity()));
+		try {
+			if (!FacesContext.getCurrentInstance().isPostback()){
+				if(getCodigo()!=null){
+					getEntity().setCodigo(getCodigo());
+					setEntity(bean.findByPrimaryKey(getEntity()));
+				}
+			}else{
+				if(!VorticeUtil.isEmpty(getCodigo())){
+					getEntity().setCodigo(Long.valueOf(getCodigo()));
+					setEntity(bean.findByPrimaryKey(getEntity()));
+				}
 			}
-		}else{
-			if(!VorticeUtil.isEmpty(getCodigo())){
-				getEntity().setCodigo(Long.valueOf(getCodigo()));
-				setEntity(bean.findByPrimaryKey(getEntity()));
-			}
+		} catch (Exception e) {
+			tratarExcecao(e);
 		}
 	}
 	
 	public void upload() {
-        if(foto != null) {
-        	setEntity(bean.findByPrimaryKey(getEntity()));
-            getEntity().setFoto(foto.getContents());
-            bean.update(getEntity());
-            addMessageSucesso("Foto alterada com sucesso!");
-        }
+        try {
+        	if(foto != null) {
+            	setEntity(bean.findByPrimaryKey(getEntity()));
+                getEntity().setFoto(foto.getContents());
+                bean.update(getEntity());
+                addMessageSucesso("Foto alterada com sucesso!");
+            }
+		} catch (Exception e) {
+			tratarExcecao(e);
+		}
     }
 	
 	public StreamedContent getFotoCliente(){

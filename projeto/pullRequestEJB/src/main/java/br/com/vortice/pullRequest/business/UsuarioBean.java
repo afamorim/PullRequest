@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import com.vortice.core.exception.AplicacaoException;
+import com.vortice.core.util.VorticeUtil;
 
 import br.com.vortice.pullRequest.dao.UsuarioDAO;
 import br.com.vortice.pullRequest.entity.UsuarioEntity;
@@ -20,6 +21,29 @@ public class UsuarioBean extends GenericBean<UsuarioEntity, Long> {
 		setDAO(new UsuarioDAO());
 	}
 	
+	@Override
+	public UsuarioEntity insert(UsuarioEntity entity) throws AplicacaoException{
+		validaRegraNegocio(entity);
+		return super.insert(entity);
+	}
+
+
+
+	@Override
+	public void update(UsuarioEntity entity) throws AplicacaoException{
+		validaRegraNegocio(entity);
+		super.update(entity);
+	}
+
+
+	private void validaRegraNegocio(UsuarioEntity entity) throws AplicacaoException{
+		if (!entity.getPerfil().getIsAdmin()){
+			if (VorticeUtil.isEmpty(entity.getEstabelecimento()) || VorticeUtil.isEmpty(entity.getEstabelecimento().getCodigo())){
+				throw new AplicacaoException("");
+			}
+		}
+	}
+
 	public List<UsuarioEntity> findByFilter(UsuarioEntity aUsuario){
 		return getUsuarioDAO().findByFilter(aUsuario);
 	}

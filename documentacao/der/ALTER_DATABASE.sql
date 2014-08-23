@@ -33,3 +33,7 @@ ALTER TABLE "public"."cliente" ALTER COLUMN data_ultimo_acesso DROP NOT NULL;
 CREATE SEQUENCE public.seq_cliente;
 
 ALTER TABLE CLIENTE ALTER COLUMN CODIGO SET DEFAULT nextval('seq_cliente');
+
+ALTER TABLE USUARIO ADD COLUMN estabelecimento_codigo bigint NULL;
+
+ALTER TABLE estabelecimento RENAME COLUMN usuario_cadastro TO usuario_cadastro_codigo;

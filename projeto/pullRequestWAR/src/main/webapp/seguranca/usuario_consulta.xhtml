@@ -17,6 +17,15 @@
 				<p:outputPanel>
 					
 					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Estabelecimento" />
+						<p:selectOneMenu value="#{usuarioConsultaFaces.usuario.estabelecimento.codigo}" effect="fade"
+							disabled="#{!usuarioConsultaFaces.isAdmin}">  
+							<f:selectItem itemLabel="Selecione" itemValue="" />  
+							<f:selectItems value="#{usuarioConsultaFaces.estabelecimentos}" itemLabel="#{estabelecimento.nome}" itemValue="#{estabelecimento.codigo}" var="estabelecimento"/>  
+			        	</p:selectOneMenu>  
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
 						<h:outputLabel styleClass="label-campo" value="Nome:" />
 						<p:inputText id="nomeUsuario" value="#{usuarioConsultaFaces.usuario.nome}" styleClass="input-form"/>
 					</p:outputPanel>
