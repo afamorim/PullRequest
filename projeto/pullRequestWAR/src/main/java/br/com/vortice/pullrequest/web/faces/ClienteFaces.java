@@ -7,11 +7,9 @@ import javax.faces.bean.ViewScoped;
 import br.com.vortice.pullRequest.business.ClienteBean;
 import br.com.vortice.pullRequest.entity.ClienteEntity;
 
-import com.vortice.web.view.BasePageBean;
-
 @ManagedBean
 @ViewScoped
-public class ClienteFaces extends BasePageBean{
+public class ClienteFaces extends PullRequestFaces{
 
 	private static final long serialVersionUID = -4185196276985624215L;
 	

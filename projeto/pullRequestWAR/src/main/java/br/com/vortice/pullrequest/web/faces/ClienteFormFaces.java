@@ -1,6 +1,7 @@
 package br.com.vortice.pullrequest.web.faces;
 
 import java.io.ByteArrayInputStream;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -67,7 +68,10 @@ public class ClienteFormFaces extends ClienteFaces{
 				if(foto != null) {
 					getEntity().setFoto(foto.getContents());
 				}
-				//TODO Usuario Logado
+				getEntity().setUsuarioCadastro(super.getUsuarioSessao());
+				getEntity().setDataCadastro(new Date());
+				getEntity().setPrimeiroAcesso(new Date());
+				getEntity().setUltimoAcesso(new Date());
 				setEntity(bean.insertEntity(getEntity()));
 				addMessageSucesso("Cliente cadastrado com sucesso!");
 			}else{

@@ -26,3 +26,10 @@ INSERT INTO url (url) VALUES ('/seguranca/usuario_form.xhtml');
 INSERT INTO url (url) VALUES ('/seguranca/usuario_consulta.xhtml');
 
 ALTER TABLE URL ADD COLUMN liberada BOOLEAN DEFAULT FALSE;
+
+ALTER TABLE "public"."cliente" ALTER COLUMN data_primeiro_acesso DROP NOT NULL;
+ALTER TABLE "public"."cliente" ALTER COLUMN data_ultimo_acesso DROP NOT NULL;
+
+CREATE SEQUENCE public.seq_cliente;
+
+ALTER TABLE CLIENTE ALTER COLUMN CODIGO SET DEFAULT nextval('seq_cliente');
