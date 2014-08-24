@@ -20,3 +20,4 @@ RemoteSystemsTempFiles/
 
 Maven Files
 target/
+projeto/pullRequestWAR/src/main/java/br/com/vortice/pullrequest/web/faces/ClienteFormFaces.java

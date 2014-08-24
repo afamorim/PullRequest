@@ -9,7 +9,11 @@ import javax.faces.bean.ViewScoped;
 public class UsuarioConsultaFaces extends UsuarioFaces {
 
 	public UsuarioConsultaFaces(){
+		super();
 		
+		if (!getIsAdmin()){
+			getUsuario().setEstabelecimento(getUsuarioSessao().getEstabelecimento());
+		}
 	}
 	
 	public void consultar(){

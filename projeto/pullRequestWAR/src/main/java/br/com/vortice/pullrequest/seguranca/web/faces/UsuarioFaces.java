@@ -9,13 +9,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import br.com.vortice.pullRequest.business.EstabelecimentoBean;
 import br.com.vortice.pullRequest.business.PerfilBean;
 import br.com.vortice.pullRequest.business.UsuarioBean;
+import br.com.vortice.pullRequest.entity.EstabelecimentoEntity;
 import br.com.vortice.pullRequest.entity.PerfilEntity;
 import br.com.vortice.pullRequest.entity.UsuarioEntity;
 import br.com.vortice.pullrequest.web.faces.PullRequestFaces;
-
-import com.vortice.web.view.BasePageBean;
 
 @ManagedBean
 @ViewScoped
@@ -28,11 +28,16 @@ public class UsuarioFaces extends PullRequestFaces{
 	
 	private List<PerfilEntity>	perfis;
 	
+	private List<EstabelecimentoEntity> estabelecimentos;
+	
 	@EJB
 	private UsuarioBean			usuarioBean;
 	
 	@EJB
 	private PerfilBean			perfilBean;
+	
+	@EJB
+	private EstabelecimentoBean	estabelecimentoBean;
 	
 	public UsuarioFaces(){
 		super();
@@ -43,13 +48,19 @@ public class UsuarioFaces extends PullRequestFaces{
 	
 	@PostConstruct
 	public void init(){
-		if (!FacesContext.getCurrentInstance().isPostback())
-		{
-			System.out.println("TESTE");
-		}else{
-			System.out.println("TESTE 1");
+		try {
+			System.out.println("POST USUARIO");
+			if (!FacesContext.getCurrentInstance().isPostback())
+			{
+				setPerfis(perfilBean.findAll());
+				setEstabelecimentos(estabelecimentoBean.findAll());
+			}else{
+				System.out.println("TESTE 1");
+			}
+		} catch (Exception e) {
+			tratarExcecao(e);
 		}
-		setPerfis(perfilBean.findAll());
+		
 	}
 	
 	public void incializarUsuario(){
@@ -90,5 +101,11 @@ public class UsuarioFaces extends PullRequestFaces{
 	}
 	public void setPerfis(List<PerfilEntity> perfis) {
 		this.perfis = perfis;
+	}
+	public List<EstabelecimentoEntity> getEstabelecimentos() {
+		return estabelecimentos;
+	}
+	public void setEstabelecimentos(List<EstabelecimentoEntity> estabelecimentos) {
+		this.estabelecimentos = estabelecimentos;
 	}
 }

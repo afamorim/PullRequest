@@ -25,6 +25,14 @@
 					</p:outputPanel>
 					
 					<p:outputPanel styleClass="area-input-10">
+						<h:outputLabel styleClass="label-campo" value="Estabelecimento" />
+						<p:selectOneMenu value="#{usuarioFormFaces.usuario.estabelecimento.codigo}" effect="fade">  
+							<f:selectItem itemLabel="Selecione" itemValue="" />  
+							<f:selectItems value="#{usuarioFormFaces.estabelecimentos}" itemLabel="#{estabelecimento.nome}" itemValue="#{estabelecimento.codigo}" var="estabelecimento"/>  
+			        	</p:selectOneMenu>  
+					</p:outputPanel>
+					
+					<p:outputPanel styleClass="area-input-10">
 						<h:outputLabel styleClass="label-campo" value="Nome:" />
 						<p:inputText id="nomeUsuario" value="#{usuarioFormFaces.usuario.nome}" styleClass="input-form"/>
 					</p:outputPanel>

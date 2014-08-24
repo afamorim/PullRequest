@@ -18,13 +18,16 @@ import javax.persistence.TemporalType;
 public class UsuarioEntity extends PullRequestEntity {
 
 	private static final long serialVersionUID = 231490282200875354L;
-	private String	nome;
-	private String	login;
-	private String	senha;
-	private Date	dataCadastro;
-	private Date	dataUltimoAcesso;
-	private Boolean	ativo;
-	private PerfilEntity	perfil;
+	
+	private String					nome;
+	private String					login;
+	private String					senha;
+	private Date					dataCadastro;
+	private Date					dataUltimoAcesso;
+	private Boolean					ativo;
+	private PerfilEntity			perfil;
+	
+	private EstabelecimentoEntity	estabelecimento;
 	
 	@Id
 	@Override
@@ -97,4 +100,15 @@ public class UsuarioEntity extends PullRequestEntity {
 	public void setPerfil(PerfilEntity perfil) {
 		this.perfil = perfil;
 	}
+
+	@ManyToOne
+	@JoinColumn(name="estabelecimento_codigo")
+	public EstabelecimentoEntity getEstabelecimento() {
+		return estabelecimento;
+	}
+	public void setEstabelecimento(EstabelecimentoEntity estabelecimento) {
+		this.estabelecimento = estabelecimento;
+	}
+	
+	
 }

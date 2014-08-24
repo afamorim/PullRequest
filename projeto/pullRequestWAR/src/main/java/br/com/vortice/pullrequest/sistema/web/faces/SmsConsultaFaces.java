@@ -31,7 +31,11 @@ public class SmsConsultaFaces extends SmsFaces {
 	}
 
 	public void consultar(){
-		listaSMS = getSmsBean().findAll();
+		try {
+			listaSMS = getSmsBean().findAll();
+		} catch (Exception e) {
+			tratarExcecao(e);
+		}
 	}
 	
 	public List<SMSEntity> getListaSMS() {

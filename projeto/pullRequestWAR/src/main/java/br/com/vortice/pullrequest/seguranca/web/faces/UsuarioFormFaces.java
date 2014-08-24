@@ -8,7 +8,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import com.vortice.core.exception.AplicacaoException;
-import com.vortice.core.util.VorticeUtil;
 
 @ManagedBean
 @ViewScoped
@@ -25,20 +24,24 @@ public class UsuarioFormFaces extends UsuarioFaces {
 	
 	@PostConstruct
 	public void init(){
-		if (FacesContext.getCurrentInstance().isPostback())
-		{
-			if (codigo != null){
-				getUsuario().setCodigo(new Long(getCodigo()));
-				setUsuario(getUsuarioBean().findByPrimaryKey(getUsuario()));
+		try {
+			if (FacesContext.getCurrentInstance().isPostback())
+			{
+				if (codigo != null){
+					getUsuario().setCodigo(new Long(getCodigo()));
+					setUsuario(getUsuarioBean().findByPrimaryKey(getUsuario()));
+				}
+			}else{
+				String codigoParameter = getRequest().getParameter("codigo");
+				if(codigoParameter != null && !"".equals(codigoParameter)){
+					getUsuario().setCodigo(Long.valueOf(codigoParameter));
+					setUsuario(getUsuarioBean().findByPrimaryKey(getUsuario()));
+					codigo = new Long(codigoParameter);
+					rSenha = getUsuario().getSenha();
+				}
 			}
-		}else{
-			String codigoParameter = getRequest().getParameter("codigo");
-			if(codigoParameter != null && !"".equals(codigoParameter)){
-				getUsuario().setCodigo(Long.valueOf(codigoParameter));
-				setUsuario(getUsuarioBean().findByPrimaryKey(getUsuario()));
-				codigo = new Long(codigoParameter);
-				rSenha = getUsuario().getSenha();
-			}
+		} catch (Exception e) {
+			tratarExcecao(e);
 		}
 		super.init();
 	}
