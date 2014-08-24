@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.vortice.pullRequest.entity.ClienteEntity;
@@ -25,6 +26,8 @@ public class ClienteDAO extends GenericDAO<ClienteEntity, Long>{
 		if(!VorticeUtil.isEmpty(filter.getEmail())){
 			c.add(Restrictions.ilike("email", filter.getEmail(), MatchMode.ANYWHERE));
 		}
+		
+		c.addOrder(Order.asc("nome"));
 		
 		return c.list();
 	}

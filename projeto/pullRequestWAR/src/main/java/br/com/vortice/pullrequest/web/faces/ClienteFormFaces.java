@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.util.Date;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -32,17 +33,23 @@ public class ClienteFormFaces extends ClienteFaces{
 	}
 	
 	public void render(){
-		if (!FacesContext.getCurrentInstance().isPostback()){
-			if(getCodigo()!=null){
-				getEntity().setCodigo(getCodigo());
-				setEntity(bean.findByPrimaryKey(getEntity()));
-			}
-		}else{
-			if(!VorticeUtil.isEmpty(getCodigo())){
-				getEntity().setCodigo(Long.valueOf(getCodigo()));
-				setEntity(bean.findByPrimaryKey(getEntity()));
-			}
+		if(!VorticeUtil.isEmpty(getCodigo())){
+			getEntity().setCodigo(Long.valueOf(getCodigo()));
+			setEntity(bean.findByPrimaryKey(getEntity()));
 		}
+	}
+	
+	public Date getMaxDate(){
+		return new Date();
+	}
+	
+	public String novo(){
+		return "/cliente/cliente_form.xhtml?faces-redirect=true";
+	}
+	
+	@Override
+	public String consulta(){
+		return "/cliente/cliente_consulta.xhtml?faces-redirect=true";
 	}
 	
 	public void upload() {
@@ -51,6 +58,9 @@ public class ClienteFormFaces extends ClienteFaces{
             getEntity().setFoto(foto.getContents());
             bean.update(getEntity());
             addMessageSucesso("Foto alterada com sucesso!");
+            foto = null;
+        }else{
+        	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, "É preciso selecionar um arquivo para mudar a foto."));
         }
     }
 	

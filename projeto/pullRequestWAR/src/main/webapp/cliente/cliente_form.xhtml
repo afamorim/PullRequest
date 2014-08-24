@@ -22,11 +22,12 @@
 				<p:outputPanel>
 					
 					<p:outputPanel id="opFoto">
-						<p:graphicImage value="#{clienteFormFaces.fotoCliente}" rendered="#{!empty clienteFormFaces.entity.codigo}"/>
-						<p:graphicImage value="/nucleo/images/sem_imagem.gif" rendered="#{empty clienteFormFaces.entity.codigo}" height="200"/>
+						<p:graphicImage url="/loadImage?tipo=cliente&amp;codigo=#{clienteFormFaces.entity.codigo}" id="foto" rendered="#{!empty clienteFormFaces.entity.codigo}" height="200">
+						</p:graphicImage>
+						<p:graphicImage value="/nucleo/images/sem_imagem.gif" id="fotoSemImagem" rendered="#{empty clienteFormFaces.entity.codigo}" height="200"/>
 						<br/>
-						<p:fileUpload value="#{clienteFormFaces.foto}" mode="simple"></p:fileUpload>
-						<p:commandButton value="Mudar Foto" ajax="true" oncomplete="dlgConfirmTrocaFoto.show();" rendered="#{!empty clienteFormFaces.entity.codigo}"/>
+						<p:fileUpload value="#{clienteFormFaces.foto}" mode="simple" id="fileUploadFoto" sizeLimit="3000" allowTypes="jpg,gif,png"></p:fileUpload>
+						<p:commandButton value="Mudar Foto" ajax="true" id="mudarFoto" oncomplete="dlgConfirmTrocaFoto.show();" rendered="#{!empty clienteFormFaces.entity.codigo}"/>
 					</p:outputPanel>
 					
 					<p:outputPanel styleClass="area-input-15">
@@ -46,7 +47,8 @@
 					
 					<p:outputPanel styleClass="area-input-10">
 						<h:outputLabel styleClass="label-campo" value="Data de Nascimento:" />
-						<p:calendar id="dataNascimentoCliente" value="#{clienteFormFaces.entity.dataNascimento}" pattern="dd/MM/yyyy" readonlyInput="true" navigator="true" mask="true" styleClass="input-form" />
+						<p:calendar id="dataNascimentoCliente" value="#{clienteFormFaces.entity.dataNascimento}" pattern="dd/MM/yyyy" readonlyInput="true" navigator="true" mask="true"
+						maxdate="#{clienteFormFaces.maxDate}" styleClass="input-form" yearRange="-90:+90"/>
 					</p:outputPanel>
 					
 					<p:outputPanel styleClass="area-input-15">
@@ -69,7 +71,7 @@
 					<p:outputPanel styleClass="area-alinhar-botoes">
 						<p:commandButton icon="ico-salvar" value="Salvar" title="Salvar" action="#{clienteFormFaces.salvar}" type="submit" ajax="false"></p:commandButton>
 						<p:commandButton icon="ico-consultar" value="Consulta" title="Consulta" action="#{clienteFormFaces.consulta}"></p:commandButton>
-						<p:commandButton icon="ico-limpar" title="Limpar" value="Limpar" action="#{clienteFormFaces.limparEntity}" update="formTemplate" ></p:commandButton>
+						<p:commandButton icon="ico-limpar" title="Limpar" value="Limpar" action="#{clienteFormFaces.novo}" ajax="false" type="submit"></p:commandButton>
 					</p:outputPanel>
 					
 				</p:outputPanel>
@@ -79,7 +81,7 @@
 			
 			<p:confirmDialog showEffect="fade" hideEffect="explode" icon="ui-icon-alert" id="confirmTrocaFoto" widgetVar="dlgConfirmTrocaFoto"  severity="alert" 
 				header="Confirmação" message="Tem certeza que deseja trocar a foto do cliente? Essa ação não poderá ser desfeita e apagará as outras alterações.">
-		        <p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{clienteFormFaces.uploadFoto}" update=":formTemplate" oncomplete="dlgConfirmTrocaFoto.hide();"/>
+		        <p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{clienteFormFaces.upload}" ajax="false"/>
 		        <p:commandButton value="Não" styleClass="ui-confirmdialog-no" icon="ui-icon-close" oncomplete="dlgConfirmTrocaFoto.hide();"/>
 		    </p:confirmDialog>
 

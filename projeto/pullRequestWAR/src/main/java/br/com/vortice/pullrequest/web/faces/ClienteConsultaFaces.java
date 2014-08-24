@@ -25,15 +25,20 @@ public class ClienteConsultaFaces extends ClienteFaces{
 	
 	public void consultar(){
 		try{
-			super.bean.findByFilter(getEntity());
+			listaResultado = super.bean.findByFilter(getEntity());
 		}catch(Exception e){
 			super.tratarExcecao(e);
 		}
 	}
 	
+	public void limparFiltro(){
+		setEntity(new ClienteEntity());
+	}
+	
 	public void remover(){
 		try{
 			super.bean.delete(cliente);
+			this.consultar();
 		}catch(Exception e){
 			super.tratarExcecao(e);
 		}
