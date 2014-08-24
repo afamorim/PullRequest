@@ -33,26 +33,13 @@ public class ClienteFormFaces extends ClienteFaces{
 	}
 	
 	public void render(){
-<<<<<<< HEAD
-		if(!VorticeUtil.isEmpty(getCodigo())){
-			getEntity().setCodigo(Long.valueOf(getCodigo()));
-			setEntity(bean.findByPrimaryKey(getEntity()));
-=======
 		try {
-			if (!FacesContext.getCurrentInstance().isPostback()){
-				if(getCodigo()!=null){
-					getEntity().setCodigo(getCodigo());
-					setEntity(bean.findByPrimaryKey(getEntity()));
-				}
-			}else{
-				if(!VorticeUtil.isEmpty(getCodigo())){
-					getEntity().setCodigo(Long.valueOf(getCodigo()));
-					setEntity(bean.findByPrimaryKey(getEntity()));
-				}
+			if(!VorticeUtil.isEmpty(getCodigo())){
+				getEntity().setCodigo(Long.valueOf(getCodigo()));
+				setEntity(bean.findByPrimaryKey(getEntity()));
 			}
 		} catch (Exception e) {
 			tratarExcecao(e);
->>>>>>> origin/master
 		}
 	}
 	
@@ -70,7 +57,6 @@ public class ClienteFormFaces extends ClienteFaces{
 	}
 	
 	public void upload() {
-<<<<<<< HEAD
         if(foto != null) {
         	setEntity(bean.findByPrimaryKey(getEntity()));
             getEntity().setFoto(foto.getContents());
@@ -80,18 +66,6 @@ public class ClienteFormFaces extends ClienteFaces{
         }else{
         	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, "É preciso selecionar um arquivo para mudar a foto."));
         }
-=======
-        try {
-        	if(foto != null) {
-            	setEntity(bean.findByPrimaryKey(getEntity()));
-                getEntity().setFoto(foto.getContents());
-                bean.update(getEntity());
-                addMessageSucesso("Foto alterada com sucesso!");
-            }
-		} catch (Exception e) {
-			tratarExcecao(e);
-		}
->>>>>>> origin/master
     }
 	
 	public StreamedContent getFotoCliente(){
